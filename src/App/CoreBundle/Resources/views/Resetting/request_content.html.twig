@@ -1,0 +1,10 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        <input type="text" id="username" name="username" required="required" class="form-control" placeholder="{{ "Email or username"|trans([],"front_office") }}" />
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary btn-block btn-flat" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
+</form>

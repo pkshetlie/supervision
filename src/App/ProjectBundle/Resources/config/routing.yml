@@ -1,0 +1,10 @@
+project_homepage:
+    path:     /project/
+    defaults: { _controller: ProjectBundle:Default:index }
+project_new:
+    path:     /project/new
+    defaults: { _controller: ProjectBundle:Default:createEdit, project: null }
+
+project_edit:
+    path:     /project/edit/{project}
+    defaults: { _controller: ProjectBundle:Default:createEdit }

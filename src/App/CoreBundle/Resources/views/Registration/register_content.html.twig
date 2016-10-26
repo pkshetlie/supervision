@@ -1,0 +1,28 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+<div class="form-group has-feedback">
+    {{ form_widget(form.email,{"attr":{"placeholder":("Email"|trans([],"front_office")),"class":"form-control"}}) }}
+    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+</div>
+<div class="form-group has-feedback">
+    {{ form_widget(form.username,{"attr":{"placeholder":("Username"|trans([],"front_office")),"class":"form-control"}}) }}
+    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+</div>
+<div class="form-group has-feedback">
+    {{ form_widget(form.plainPassword.first,{"attr":{"placeholder":("Password"|trans([],"front_office")),"class":"form-control"}}) }}
+    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+</div>
+<div class="form-group has-feedback">
+    {{ form_widget(form.plainPassword.second,{"attr":{"placeholder":("Password confirmation"|trans([],"front_office")),"class":"form-control"}}) }}
+    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+</div>
+<div>
+    <input type="submit"  class="btn btn-primary btn-block btn-flat" value="{{ 'registration.submit'|trans }}"/>
+</div>
+
+{{ form_end(form) }}
+<br/>
+<a href="{{ url("fos_user_resetting_request") }}">{{ "I forgot my password"|trans([],"front_office") }}</a>
+<a href="{{ url("fos_user_security_login") }}"
+   class="pull-right">{{ "Return to Login"|trans([],"front_office") }}</a>
