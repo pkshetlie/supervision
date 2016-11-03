@@ -19,7 +19,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset("bundles/theme/css/skins/_all-skins.min.css") }}">
-
+    {% block stylesheets %}
+{% endblock %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,12 +45,14 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="https://www.gravatar.com/avatar/{{ app.user.md5Email|trim }}" class="user-image" alt="User Image">
+                            <img src="https://www.gravatar.com/avatar/{{ app.user.md5Email|trim }}" class="user-image"
+                                 alt="User Image">
                             <span class="hidden-xs">{{ app.user.username }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="user-header">
-                                <img src="https://www.gravatar.com/avatar/{{ app.user.md5Email|trim }}" class="img-circle" alt="User Image">
+                                <img src="https://www.gravatar.com/avatar/{{ app.user.md5Email|trim }}"
+                                     class="img-circle" alt="User Image">
 
                                 <p>
                                     Alexander Pierce - Web Developer
@@ -75,7 +78,8 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ url('fos_user_security_logout') }}" class="btn btn-default btn-flat">{{ "Sign out"|trans([],"front_office") }}</a>
+                                    <a href="{{ url('fos_user_security_logout') }}"
+                                       class="btn btn-default btn-flat">{{ "Sign out"|trans([],"front_office") }}</a>
                                 </div>
                             </li>
                         </ul>
@@ -92,7 +96,8 @@
         <section class="sidebar">
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="https://www.gravatar.com/avatar/{{ app.user.md5Email|trim }}" class="img-circle" alt="User Image">
+                    <img src="https://www.gravatar.com/avatar/{{ app.user.md5Email|trim }}" class="img-circle"
+                         alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{ app.user.username }}</p>
@@ -124,8 +129,10 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ url('project_homepage') }}"><i class="fa fa-circle-o"></i> {{ "List"|trans([],"front_office") }}</a></li>
-                        <li><a href="{{ url("project_new") }}"><i class="fa fa-circle-o"></i> {{ "New"|trans([],"front_office") }}</a></li>
+                        <li><a href="{{ url('crud_project_index') }}"><i
+                                        class="fa fa-circle-o"></i> {{ "List"|trans([],"front_office") }}</a></li>
+                        <li><a href="{{ url("crud_project_create_edit") }}"><i
+                                        class="fa fa-circle-o"></i> {{ "New"|trans([],"front_office") }}</a></li>
                     </ul>
                 </li>
             </ul>
@@ -139,12 +146,12 @@
                 <small></small>
             </h1>
             {#<ol class="breadcrumb">#}
-                {#<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>#}
-                {#<li class="active">Dashboard</li>#}
+            {#<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>#}
+            {#<li class="active">Dashboard</li>#}
             {#</ol>#}
         </section>
-
         <!-- Main content -->
+        {% block content %}
         <section class="content">
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -163,16 +170,13 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">{{ "New errors"|trans([],"front_office") }}</span>
-                            <span class="info-box-number">{{ render(controller("ProjectBundle:Default:countNewErrors"))}}</span>
+                            <span class="info-box-number">{{ render(controller("ProjectBundle:ProjectCRUD:countNewErrors")) }}</span>
                         </div>
                     </div>
                 </div>
-
                 <div class="clearfix visible-sm-block"></div>
-
-
             </div>
-
+            {% endblock %}
         </section>
     </div>
 
@@ -390,8 +394,12 @@
 <script src="{{ asset("bundles/theme/plugins/slimScroll/jquery.slimscroll.min.js") }}"></script>
 <script src="{{ asset("bundles/theme/plugins/chartjs/Chart.min.js") }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset("bundles/theme/dist/js/pages/dashboard2.js") }}"></script>
+{#<script src="{{ asset("bundles/theme/js/pages/dashboard2.js") }}"></script>#}
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset("bundles/theme/dist/js/demo.js") }}"></script>
+{#<script src="{{ asset("bundles/theme/js/demo.js") }}"></script>#}
+{% block javascripts %}
+
+{% endblock %}
+
 </body>
 </html>

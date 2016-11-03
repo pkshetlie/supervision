@@ -1,0 +1,59 @@
+{% extends '@Theme/Default/index.html.twig' %}
+
+{% block content %}
+
+    <div class="section dark-bg text-muted">
+        <div class="container">
+            <h2>{{ titleD|trans }}</h2>
+            <table id="table_{{ entityRouteName }}" class="table">
+                <thead>
+                <tr>
+                    {% for th in fields %}
+                        <th>{{ th|trans }}</th>
+                    {% endfor %}
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    {% for th in fields %}
+                        <th>{{ th|trans }}</th>
+                    {% endfor %}
+                    <th>Actions</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(function(){
+            $('#table_{{ entityRouteName }}').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax" : {
+                    url : "{{ url("crud_"~entityRouteName~"_ajax_datatable") }}",
+                    dataSrc: 'data',
+                    type: 'POST'
+                },
+                columns: [
+            {% for key,field in fields %}
+                    {data : "{{ field }}"},
+            {% endfor %}
+                    {data: 'action_dataTable'}
+                ]
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
+
+{% endblock %}

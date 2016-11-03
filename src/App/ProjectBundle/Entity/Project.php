@@ -2,6 +2,7 @@
 
 namespace App\ProjectBundle\Entity;
 
+use App\CoreBundle\Entity\EntityCore;
 use App\CoreBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,25 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="project")
  * @ORM\Entity(repositoryClass="App\ProjectBundle\Repository\ProjectRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Project
+class Project extends EntityCore
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="label", type="string", length=255)
-     */
-    private $label;
-
     /**
      * @var string
      *
@@ -43,13 +29,7 @@ class Project
      */
     private $apiToken;
 
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="App\CoreBundle\Entity\User", inversedBy="projects")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    private $user;
+
 
     /**
      * @var Error[]
@@ -140,21 +120,7 @@ class Project
         return $this->apiToken;
     }
 
-    /**
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 
-    /**
-     * @param User $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-    }
     /**
      * Constructor
      */

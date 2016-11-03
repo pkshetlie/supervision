@@ -1,0 +1,5 @@
+admin:
+  common:
+    form:
+      create: créer
+      update: mettre à jour

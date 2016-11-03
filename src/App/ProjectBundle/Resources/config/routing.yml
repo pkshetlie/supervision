@@ -1,10 +1,15 @@
-project_homepage:
-    path:     /project/
-    defaults: { _controller: ProjectBundle:Default:index }
-project_new:
-    path:     /project/new
-    defaults: { _controller: ProjectBundle:Default:createEdit, project: null }
+crud_project_create_edit:
+    path:     /project/update/{entity}
+    defaults: { _controller: ProjectBundle:ProjectCRUD:createEdit, entity:null }
 
-project_edit:
-    path:     /project/edit/{project}
-    defaults: { _controller: ProjectBundle:Default:createEdit }
+crud_project_delete:
+    path:     /project/delete/{entity}
+    defaults: { _controller: ProjectBundle:ProjectCRUD:delete }
+
+crud_project_index:
+    path:     /project/
+    defaults: { _controller: ProjectBundle:ProjectCRUD:index }
+
+crud_project_ajax_datatable:
+    path:     /project/ajax/
+    defaults: { _controller: ProjectBundle:ProjectCRUD:dataTable }

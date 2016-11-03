@@ -2,7 +2,7 @@
 
 namespace App\ProjectBundle\Entity;
 
-use App\ProjectBundle\Enum\ETypeError;
+use App\CoreBundle\Entity\EntityCore;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,17 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="error")
  * @ORM\Entity(repositoryClass="App\ProjectBundle\Repository\ErrorRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Error
+class Error extends EntityCore
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+
 
     /**
      * @var string
@@ -35,13 +29,6 @@ class Error
      * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_created", type="datetime")
-     */
-    private $dateCreated;
 
     /**
      * @var Project

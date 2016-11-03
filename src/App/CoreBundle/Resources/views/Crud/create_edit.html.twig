@@ -1,0 +1,12 @@
+{% extends '@Theme/Default/index.html.twig' %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block content %}
+    <div class="section dark-bg text-muted">
+        <div class="container">
+            <h2>{{ titleCU|trans }}</h2>
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

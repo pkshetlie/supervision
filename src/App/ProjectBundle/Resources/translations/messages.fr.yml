@@ -1,0 +1,13 @@
+crud:
+  project:
+    titleC: Création d'un projet
+    titleR: Mes projets
+    titleU: Mise à jour d'un projet
+    titleD: Suppression d'un projet
+    flash:
+      edit: Le projet à bien été créé / modifié
+      delete:
+        success: Le projet à bien été supprimé
+        error: Erreur lors de la suppression
+id: Id
+label: Libellé
