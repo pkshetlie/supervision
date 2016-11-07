@@ -1,0 +1,4 @@
+error:
+    type: rest
+    resource:  "ProjectBundle:ErrorRest"
+    name_prefix:  api_

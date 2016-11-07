@@ -9,5 +9,7 @@ crud:
       delete:
         success: Le projet à bien été supprimé
         error: Erreur lors de la suppression
-id: Id
-label: Libellé
+project:
+  id: Id
+  label: Libellé
+  apiKey: Clé API

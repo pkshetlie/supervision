@@ -5,12 +5,12 @@ use App\CoreBundle\Interfaces\IEntity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
- * @ORM\HasLifecycleCallbacks()
- */
-class EntityCore implements IEntity
-{
+* @ORM\HasLifecycleCallbacks()
+*/
+class EntityUserCore extends BaseUser implements IEntity {
 
     /**
      * @var int
@@ -28,18 +28,12 @@ class EntityCore implements IEntity
      */
     protected $label;
 
-    /**
-     * @var string
-     * @Gedmo\Slug(fields={"label"})
-     * @Gedmo\Translatable()
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
-     */
-    protected $slug;
+
     /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="App\CoreBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id",nullable=true)
      */
     protected $user;
 
@@ -80,11 +74,11 @@ class EntityCore implements IEntity
     private $locale;
 
 
+
     /**
      * @ORM\prePersist()
      */
-    public function prePersist()
-    {
+    public function prePersist(){
         $this->dateCreated = new \DateTime();
         $this->dateUpdated = new \DateTime();
 
@@ -93,8 +87,7 @@ class EntityCore implements IEntity
     /**
      * @ORM\preUpdate()
      */
-    public function preUpdate()
-    {
+    public function preUpdate(){
         $this->dateUpdated = new \DateTime();
     }
 
@@ -167,11 +160,9 @@ class EntityCore implements IEntity
         $this->dateCreated = $dateCreated;
     }
 
-    public function postLoad()
-    {
+    public function postLoad(){
 //        $this->dateUpdated = new \DateTime();
     }
-
     /**
      * @return \DateTime
      */
@@ -204,8 +195,7 @@ class EntityCore implements IEntity
         $this->isDeleted = $isDeleted;
     }
 
-    public function get($field)
-    {
+    public function get($field){
         return $this->$field;
     }
 
@@ -225,8 +215,4 @@ class EntityCore implements IEntity
         $this->user = $user;
     }
 
-    public function __toString()
-    {
-        return $this->label;
-    }
 }

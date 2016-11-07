@@ -1,0 +1,3 @@
+rest_error:
+  type: rest
+  resource: "@ProjectBundle/Resources/config/routing/rest_error.yml"

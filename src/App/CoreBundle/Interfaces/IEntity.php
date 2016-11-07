@@ -16,5 +16,8 @@ interface IEntity
     public function getId();
     public function getUser();
     public function setUser(UserInterface $user);
+    public function setIsDeleted($isDeleted);
+    public function setPosition($int);
+    public function getPosition();
 
 }

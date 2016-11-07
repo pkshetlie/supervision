@@ -1,15 +1,16 @@
 {% extends '@Theme/Default/index.html.twig' %}
 
 {% block content %}
+<div class="content">
+    <div class="row">
+        <div class="col-xs-12">
 
-    <div class="section dark-bg text-muted">
-        <div class="container">
-            <h2>{{ titleD|trans }}</h2>
+            <h2>{{ titleD|trans }} <a href="{{ url("crud_"~entityRouteName~"_create_edit") }}" class="pull-right btn btn-success btn-flat">+ {{ "crud.common.button.new"|trans }}</a></h2>
             <table id="table_{{ entityRouteName }}" class="table">
                 <thead>
                 <tr>
                     {% for th in fields %}
-                        <th>{{ th|trans }}</th>
+                        <th>{{ (entityRouteName~"."~th)|trans }}</th>
                     {% endfor %}
                     <th>Actions</th>
                 </tr>
@@ -17,7 +18,7 @@
                 <tfoot>
                 <tr>
                     {% for th in fields %}
-                        <th>{{ th|trans }}</th>
+                        <th>{{ (entityRouteName~"."~th)|lower|trans }}</th>
                     {% endfor %}
                     <th>Actions</th>
                 </tr>
@@ -28,6 +29,7 @@
             </table>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block javascripts %}
@@ -37,6 +39,9 @@
             $('#table_{{ entityRouteName }}').DataTable( {
                 "processing": true,
                 "serverSide": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/French.json"
+                },
                 "ajax" : {
                     url : "{{ url("crud_"~entityRouteName~"_ajax_datatable") }}",
                     dataSrc: 'data',

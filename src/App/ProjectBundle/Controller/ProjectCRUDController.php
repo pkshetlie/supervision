@@ -17,11 +17,16 @@ class ProjectCRUDController extends CoreBackController
         return new Response(count($errors));
     }
 
+    /**
+     * @var Project
+     */
+    protected $_entity;
     protected $_ownerOnly = true;
     protected $_entityClassName = Project::class;
     protected $_tableHead = array(
         'id',
         'label',
+        "apiKey"
     );
 
     /**
@@ -36,10 +41,19 @@ class ProjectCRUDController extends CoreBackController
     {
         return parent::doDelete($entity);
     }
-    public function createEditAction(Request $request, Project $entity = null)
+
+    public function createUpdateAction(Request $request, Project $entity = null)
     {
-        return parent::doCreateEdit($request,$entity);
+        return parent::doCreateUpdate($request,$entity);
     }
+
+    public function beforeFormCreateUpdate()
+    {
+        if($this->_entity->getApiKey() == null){
+            $this->_entity->setApiKey(md5(time().$this->getUser()->getSalt()));
+        }
+    }
+
     /**
      * @return string something like "shop"
      */

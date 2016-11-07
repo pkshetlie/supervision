@@ -1,5 +1,21 @@
-admin:
+true: oui
+crud:
   common:
+    button:
+      new: Nouveau
     form:
       create: créer
       update: mettre à jour
+  user:
+    titleC: Créer un utilisateur
+    titleR: Utilisateurs
+    titleU: Mettre à jour un utilisateur
+
+user:
+  societe: Sociéte
+  label: Nom
+  email: Email
+  username: Identifiant
+  lastLogin: Dernière co.
+  password: Mot de passe
+  enabled: Actif

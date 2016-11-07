@@ -1,0 +1,15 @@
+crud_user_create_edit:
+    path:     /update/{entity}
+    defaults: { _controller: CoreBundle:User:createUpdate, entity:null }
+
+crud_user_delete:
+    path:     /delete/{entity}
+    defaults: { _controller: CoreBundle:User:delete }
+
+crud_user_index:
+    path:     /
+    defaults: { _controller: CoreBundle:User:index }
+
+crud_user_ajax_datatable:
+    path:    /ajax/
+    defaults: { _controller: CoreBundle:User:dataTable }

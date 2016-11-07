@@ -1,0 +1,15 @@
+crud_project_index:
+    path:     /
+    defaults: { _controller: ProjectBundle:ProjectCRUD:index }
+
+crud_project_ajax_datatable:
+    path:     /ajax/
+    defaults: { _controller: ProjectBundle:ProjectCRUD:dataTable }
+
+crud_project_create_edit:
+    path:     /update/{entity}
+    defaults: { _controller: ProjectBundle:ProjectCRUD:createUpdate, entity:null }
+
+crud_project_delete:
+    path:     /delete/{entity}
+    defaults: { _controller: ProjectBundle:ProjectCRUD:delete }

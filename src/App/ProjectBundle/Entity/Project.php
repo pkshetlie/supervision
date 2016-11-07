@@ -20,14 +20,14 @@ class Project extends EntityCore
      *
      * @ORM\Column(name="api_key", type="string", length=255, nullable=true)
      */
-    private $apiKey;
+    protected $apiKey;
 
     /**
      * @var string
      *
      * @ORM\Column(name="api_token", type="string", length=255, nullable=true)
      */
-    private $apiToken;
+    protected $apiToken;
 
 
 
@@ -36,7 +36,7 @@ class Project extends EntityCore
      *
      * @ORM\OneToMany(targetEntity="App\ProjectBundle\Entity\Error",mappedBy="project")
      */
-    private $errors;
+    protected $errors;
 
     /**
      * Get id
