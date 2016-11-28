@@ -76,7 +76,7 @@ class EntityUserCore extends BaseUser implements IEntity {
 
 
     /**
-     * @ORM\prePersist()
+     * @ORM\PrePersist()
      */
     public function prePersist(){
         $this->dateCreated = new \DateTime();
@@ -85,7 +85,7 @@ class EntityUserCore extends BaseUser implements IEntity {
     }
 
     /**
-     * @ORM\preUpdate()
+     * @ORM\PreUpdate()
      */
     public function preUpdate(){
         $this->dateUpdated = new \DateTime();

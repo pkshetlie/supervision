@@ -10,7 +10,7 @@
                 <thead>
                 <tr>
                     {% for th in fields %}
-                        <th>{{ (entityRouteName~"."~th)|trans }}</th>
+                        <th>{{ (entityRouteName~"."~th)|lower|trans }}</th>
                     {% endfor %}
                     <th>Actions</th>
                 </tr>

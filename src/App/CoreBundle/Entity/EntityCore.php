@@ -81,7 +81,7 @@ class EntityCore implements IEntity
 
 
     /**
-     * @ORM\prePersist()
+     * @ORM\PrePersist()
      */
     public function prePersist()
     {
@@ -91,7 +91,7 @@ class EntityCore implements IEntity
     }
 
     /**
-     * @ORM\preUpdate()
+     * @ORM\PreUpdate()
      */
     public function preUpdate()
     {

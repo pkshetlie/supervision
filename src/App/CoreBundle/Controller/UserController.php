@@ -13,7 +13,7 @@ class UserController extends CoreBackController
     protected $_ownerOnly = false;
     /** @var  UserInterface */
     protected $_entity;
-    protected $_entityClassName = User::class;
+    protected $_entityClassName = "App\CoreBundle\Entity\User";
     protected $_tableHead = array(
         'societe',
         'label',
@@ -25,6 +25,8 @@ class UserController extends CoreBackController
 
     public function deleteAction(User $entity = null)
     {
+        $entity->setEnabled(false);
+
         return parent::doDelete($entity);
     }
 
@@ -54,14 +56,33 @@ class UserController extends CoreBackController
         if ($this->_entity->getId() == null) {
             $this->_entity->setEnabled(true);
         }
+        return parent::beforeFormCreateUpdate();
     }
 
     protected function beforePersistCreateUpdate()
     {
-        if ($this->_request->get("password", null)) {
+        $userRepo = $this->getDoctrine()->getRepository("CoreBundle:User");
+        $existingUser = $userRepo->findOneBy(array("username"=>$this->_entity->getUsername()));
+        if($existingUser != null && ($existingUser->getId() != $this->_entity->getId() || $this->_entity->getId() == null)){
+            $this->addFlash(
+                'danger',
+                'Cet utilisateur existe déjà'
+            );
+            return false;
+        }
+        $existingUser = $userRepo->findOneBy(array("email"=>$this->_entity->getEmail()));
+        if($existingUser != null && ($existingUser->getId() != $this->_entity->getId() || $this->_entity->getId() == null)){
+            $this->addFlash(
+                'danger',
+                'Cet adresse mail est déjà utilisée'
+            );
+            return false;
+        }
+        if ($this->_entity->getPlainPassword()) {
             $encoder = $this->container->get('security.encoder_factory')->getEncoder($this->_entity);
             $this->_entity->setPassword($encoder->encodePassword($this->_entity->getPlainPassword(), $this->_entity->getSalt()));
         }
+        return parent::beforeFormCreateUpdate();
     }
 
     /**
@@ -69,7 +90,8 @@ class UserController extends CoreBackController
      */
     protected function getEntityFormType()
     {
-        return UserType::class;
+        return "App\CoreBundle\Form\UserType";
     }
+
 
 }

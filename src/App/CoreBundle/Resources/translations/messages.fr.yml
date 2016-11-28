@@ -10,12 +10,20 @@ crud:
     titleC: Créer un utilisateur
     titleR: Utilisateurs
     titleU: Mettre à jour un utilisateur
-
+    flash:
+      edit: Utilisateur mis à jour
+      delete:
+        success: Utilisateur supprimé
 user:
   societe: Sociéte
   label: Nom
   email: Email
   username: Identifiant
-  lastLogin: Dernière co.
+  lastlogin: Dernière co.
   password: Mot de passe
   enabled: Actif
+download:
+  poseur:
+    form: 'Société utilis. '
+  demandeur:
+    form: 'Nom demandeur'

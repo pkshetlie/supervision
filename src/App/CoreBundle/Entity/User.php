@@ -18,6 +18,27 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends EntityUserCore
 {
+    /**
+     * @var string
+     * @ORM\Column(type="string", name="societe")
+     */
+    protected $societe;
+
+    /**
+     * @return mixed
+     */
+    public function getSociete()
+    {
+        return $this->societe;
+    }
+
+    /**
+     * @param mixed $societe
+     */
+    public function setSociete($societe)
+    {
+        $this->societe = $societe;
+    }
 
 
     public function __construct()
@@ -28,5 +49,7 @@ class User extends EntityUserCore
     public function getMd5Email(){
         return md5($this->email);
     }
-
+    public function __toString(){
+        return $this->email;
+    }
 }

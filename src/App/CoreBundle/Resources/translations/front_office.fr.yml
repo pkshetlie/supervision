@@ -3,11 +3,16 @@ Password: 'Mot de passe'
 Remember me: 'Rester connecté'
 Register a new membership: 'Créer un compte'
 I forgot my password: 'Mot de passe perdu'
-Sign In: 'Connection'
+Sign In: 'Connexion'
 Return to Login: 'Se connecter'
 Register to start your session: 'Création de votre compte'
 Projects: 'Projets'
 New errors: 'Nouvelles erreurs'
 List: 'Liste'
 New: 'Nouveau'
-
+Close: 'Fermer'
+Save changes: 'Télécharger'
+crud:
+  user:
+    flash:
+      edit: Utilisateur mis à jour

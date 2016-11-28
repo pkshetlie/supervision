@@ -2,6 +2,8 @@
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block content %}
+    {{ form_errors(form) }}
+
     <div class="section dark-bg text-muted">
         <div class="container">
             <h2>{{ titleCU|trans }}</h2>
